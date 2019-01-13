@@ -1,6 +1,7 @@
 import scipy as sp
 from scipy.io.arff import loadarff
 from secoda import Secoda
+import time
 
 print("\nHelix:")
 helix = loadarff("data\\Helix.arff")
@@ -42,3 +43,11 @@ TimeSeries_data = TimeSeries[0]
 TimeSeries_data = TimeSeries_data.astype([('Time', '<f8'), ('AverageWage', '<f8')])
 TimeSeries_anomalies = Secoda(TimeSeries_data)
 print(TimeSeries_data[[i[0] for i in TimeSeries_anomalies[0:5]]])
+
+run_time = {1: 0, 10: 0, 100: 0, 1000: 0, 3500: 0}
+for key in run_time.keys():
+    start = time.perf_counter()
+    Secoda(NoisyMix_data[0:key])
+    end = time.perf_counter()
+    run_time[key] = end - start
+print('\n',run_time)
