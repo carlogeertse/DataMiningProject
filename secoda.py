@@ -9,10 +9,9 @@ def Secoda(data):
     s = 1  # stopping criterion
     average_anomaly_score, pruned_anomaly_scores = {}, {}
     data_list = [data]
-    cont = True  # Helper variable due to no do while in python
+    cont = True  # Helper variable due to do while not existing in python
     while cont:
         data = data_list[i]
-        print(len(data))
         i = i + 1
         disc_data = discretize_continuous(np.copy(data), b)
         constellation_frequencies = calculate_constellation_frequencies(disc_data)
